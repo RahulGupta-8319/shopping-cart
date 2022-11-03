@@ -10,11 +10,11 @@ const Authentication = async (req, res, next) => {
         let token = req.headers.authorization;
         if (!token) return res.status(401).send({ status: false, message: 'TOKEN is missing !!!' });
 
-        // console.log({ token: token })
+        console.log({ "token": token })
 
         let user = token.split(' ');
 
-        // console.log({ token: user })
+        console.log({ "token": user })
 
         JWT.verify(
             user[1],

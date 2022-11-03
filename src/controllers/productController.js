@@ -186,9 +186,9 @@ const updateProduct = async function (req, res) {
 
         if (!isObjectId(product_id)) return res.status(400).send({ status: false, message: "product id is invalid" })
 
-        let isPresent = await productModel.findOne({ _id: product_id, isDeleted: false })
+        //let isPresent = await productModel.findOne({ _id: product_id, isDeleted: false })
 
-        if (!isPresent) return res.status(404).send({ status: false, message: "product not found" })
+        //if (!isPresent) return res.status(404).send({ status: false, message: "product not found" })
 
         let body = req.body
 
@@ -280,6 +280,7 @@ const updateProduct = async function (req, res) {
         }
 
         let updatedProduct = await productModel.findOneAndUpdate({ _id: product_id }, { $set: { title: title, description: description, price: price, currencyId: currencyId, currencyFormat: currencyFormat, isFreeShipping: isFreeShipping, productImage: productImage, style: style, availableSizes: availableSizes, installments: installments } }, { new: true })
+        // console.log("findOneAndUpdate: " , updatedProduct )
 
         return res.status(200).send({ status: true, message: updatedProduct })
     } catch (err) {
